@@ -122,8 +122,41 @@ def getRandomPosition():
         print(snakeLength)
         running = False
 ```
+```
+    snake_pixel  = pygame.Rect(0,0, pixel_width,pixel_width)
+    snakePosition =  pygame.Vector2(getRandomPosition())
+    snake_pixel.center = snakePosition
+    old_pos = snakePosition.copy()
+    snakeLength = 1
+    snake = [snake_pixel]
 
+    food_pixel = pygame.Rect(0,0, pixel_width, pixel_width)
+    foodPosition = pygame.Vector2(getRandomPosition())
+    food_pixel.center = foodPosition
+```
+### add length of snake and move 
 
-    
+```    if old_pos != snakePosition:
+        old_pos = snakePosition.copy()
+        if snakeLength > 1:
+            snake = snake[:snakeLength -1]
+            snake.insert(0, snake[0].copy())
+        snake[0].center =  snakePosition
+
+    for segment in snake:
+        pygame.draw.rect(screen,"green",segment)
+```
+```
+    snake_pixel  = pygame.Rect(0,0, pixel_width,pixel_width)
+    snakePosition =  pygame.Vector2(getRandomPosition())
+    snake_pixel.center = snakePosition
+    old_pos = snakePosition.copy()
+    snakeLength = 1
+    snake = [snake_pixel]
+
+    food_pixel = pygame.Rect(0,0, pixel_width, pixel_width)
+    foodPosition = pygame.Vector2(getRandomPosition())
+    food_pixel.center = foodPosition
+```
 #### to deactivate the virtual env.
-venv\Scripts\deactivate
+> venv\Scripts\deactivate

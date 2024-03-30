@@ -20,6 +20,7 @@ snake_pixel.center = snakePosition
 old_pos = snakePosition.copy()
 snakeLength = 1
 snake = [snake_pixel]
+
 food_pixel = pygame.Rect(0,0, pixel_width, pixel_width)
 foodPosition = pygame.Vector2(getRandomPosition())
 food_pixel.center = foodPosition
