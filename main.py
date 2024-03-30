@@ -1,18 +1,27 @@
 import pygame 
+import random
+
+screenW = 700
+screenH = 520
 pygame.init()
-screen = pygame.display.set_mode((700,520))
+screen = pygame.display.set_mode((screenW,screenH))
 clock = pygame.time.Clock()
 running = True
 oldkey = 0
 pixel_width = 50 
+
+
+def getRandomPostion():
+    return (random.randint(0,screenW),random.randint(0,screenH))
+
 snake_pixel  = pygame.Rect(0,0, pixel_width,pixel_width)
-snakePosition = pygame.Vector2(350,250)
+snakePosition =  pygame.Vector2(getRandomPostion())
 snake_pixel.center = snakePosition
 old_pos = snakePosition.copy()
-
-
+snakeLength = 1
+snake = [snake_pixel]
 food_pixel = pygame.Rect(0,0, pixel_width, pixel_width)
-foodPosition = pygame.Vector2(100,100)
+foodPosition = pygame.Vector2(getRandomPostion())
 food_pixel.center = foodPosition
 
 
@@ -22,19 +31,33 @@ while running:
             running = False
     screen.fill("black")
 
+    # if old_pos != snakePosition:
+    #     old_pos = snakePosition.copy()
+    #     snake_pixel.center = snakePosition()
+
     if old_pos != snakePosition:
         old_pos = snakePosition.copy()
-        snake_pixel.center = snakePosition
+        if snakeLength > 1:
+            snake = snake[:snakeLength -1]
+            snake.insert(0, snake[0].copy())
+        snake[0].center =  snakePosition
 
 
+    #pygame.draw.rect(screen,"green",snake_pixel)
+    for segment in snake:
+        pygame.draw.rect(screen,"green",segment)
 
-    pygame.draw.rect(screen,"green",snake_pixel)
+
     pygame.draw.rect(screen,"red",food_pixel)
 
-    if snake_pixel.colliderect(food_pixel):
+    if snake[0].colliderect(food_pixel):
+        food_pixel.center = pygame.Vector2(getRandomPostion())
+        snakeLength += 1
+        snake.append(snake[-1].copy())
         print("Collision")
-        print("game OVER")
-        running = False
+        print("eat food")
+        print(snakeLength)
+        # running = False
 
     if event.type == pygame.KEYDOWN:
         oldkey  = event.key

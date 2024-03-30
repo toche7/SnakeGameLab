@@ -100,10 +100,31 @@ pygame.draw.rect(screen,"red",food_pixel)
 
 ```
     if snake_pixel.colliderect(food_pixel):
+        food.center = 
         print("Collision")
-        print("game OVER")
+        print("eat food")
         running = False
 ```
+
+### add after eat food     
+
+```
+def getRandomPostion():
+    return (random.randint(0,screenW),random.randint(0,screenH))
+```
+
+```
+    if snake_pixel.colliderect(food_pixel):
+        food_pixel.center = pygame.Vector2(getRandomPostion())
+        snakeLength += 1
+        snake.append(snake[-1])
+        print("Collision")
+        print("eat food")
+        print(snakeLength)
+        running = False
+```
+
+
     
 #### to deactivate the virtual env.
 venv\Scripts\deactivate
