@@ -17,7 +17,7 @@ pygame
 
 
 ### create python main.py 
-creat the black screen 
+create the black screen 
 
 ```
 import pygame 
@@ -40,8 +40,6 @@ while running:
 
 pygame.quit()
 ```
-
-
 
 #### create .gitignore
 create gitignore to list the files and folder that not include the git,  in this case 
@@ -110,13 +108,13 @@ pygame.draw.rect(screen,"red",food_pixel)
 ### add after eat food     
 
 ```
-def getRandomPostion():
+def getRandomPosition():
     return (random.randint(0,screenW),random.randint(0,screenH))
 ```
 
 ```
     if snake_pixel.colliderect(food_pixel):
-        food_pixel.center = pygame.Vector2(getRandomPostion())
+        food_pixel.center = pygame.Vector2(getRandomPosition())
         snakeLength += 1
         snake.append(snake[-1])
         print("Collision")

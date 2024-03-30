@@ -11,17 +11,17 @@ oldkey = 0
 pixel_width = 50 
 
 
-def getRandomPostion():
+def getRandomPosition():
     return (random.randint(0,screenW),random.randint(0,screenH))
 
 snake_pixel  = pygame.Rect(0,0, pixel_width,pixel_width)
-snakePosition =  pygame.Vector2(getRandomPostion())
+snakePosition =  pygame.Vector2(getRandomPosition())
 snake_pixel.center = snakePosition
 old_pos = snakePosition.copy()
 snakeLength = 1
 snake = [snake_pixel]
 food_pixel = pygame.Rect(0,0, pixel_width, pixel_width)
-foodPosition = pygame.Vector2(getRandomPostion())
+foodPosition = pygame.Vector2(getRandomPosition())
 food_pixel.center = foodPosition
 
 
@@ -51,7 +51,7 @@ while running:
     pygame.draw.rect(screen,"red",food_pixel)
 
     if snake[0].colliderect(food_pixel):
-        food_pixel.center = pygame.Vector2(getRandomPostion())
+        food_pixel.center = pygame.Vector2(getRandomPosition())
         snakeLength += 1
         snake.append(snake[-1].copy())
         print("Collision")
